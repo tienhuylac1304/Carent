@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ffb03efbc08443259a6aac280fcad058" Name="Diagram1">
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.DongXe" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.HangXe" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.HopDongThueXe" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.LoaiUser" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.SoDatXe" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.SoXe" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.sysdiagram" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.TrangThaiHopDong" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.User" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.Xe" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLHeThongThueXeModel.ThamSo" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_Xe_DongXe" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_Xe_HangXe" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_HopDongThueXe_TrangThaiHopDong" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_HopDongThueXe_User" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_HopDongThueXe_Xe" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_SoXe_HopDongThueXe" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_User_LoaiUser" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_SoDatXe_User" ManuallyRouted="false" />
+        <AssociationConnector Association="QLHeThongThueXeModel.FK_SoDatXe_Xe" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

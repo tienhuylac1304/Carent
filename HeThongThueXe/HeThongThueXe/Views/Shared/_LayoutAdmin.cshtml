@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarRent</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        ul.navbar-nav{
+            float:right;
+        }
+        body{
+            font-size:20px
+        }
+        div.col-md-2 list-group-horizontal-sm{
+            height:100%;
+            width:100%;
+            padding:0;
+        }
+        .h_navbar {
+            background-color: #222;
+        }
+.list-group-horizontal-sm{
+    padding:0
+}
+.col-md-2{
+    margin-top:0;
+    padding-top:0;
+}
+        .navbar navbar-inverse navbar-fixed-top{
+            margin-bottom:0
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>*@
+                @Html.ActionLink("CarRent(Admin)", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li style="margin-left:50px; float:right">
+                        @if (Session["NameUser"] != null)
+                        {
+
+                            <a class="nav-item" href="@Url.Action( "Login", "Login")">Logout</a>;
+                        }
+                        else
+                        {
+
+                            <a class="nav-item" href="@Url.Action( "Login", "Login")">Login</a>;
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="body-content container-fluid">
+        <div class="row container_row">
+                <div class="col-md-2 list-group-horizontal-sm" style="position:fixed">
+                    <ul style="list-style-type:none" class="nav navbar-btn navbar-collapse h_navbar">
+                        <li><a href="@Url.Action("Index", "AdminCarViewModels")" class="nav-item">Cars</a></li>
+                        <li><a href="@Url.Action("Index", "AdminDongXes")" class="nav-item">Car Names</a></li>
+                        <li><a href="@Url.Action("Index", "AdminHangXes")" class="nav-item">Brand</a></li>
+                        <li><a href="@Url.Action("Index", "Users")" class="nav-item">Users</a></li>
+                        <li><a href="@Url.Action("Index", "AdminCarBookings")" class="nav-item">Car Booking</a></li>
+                        <li><a href="@Url.Action("Index", "AdminContracts")" class="nav-item">Contract</a></li>
+                        <li><a href="@Url.Action("Index", "SoXes")" class="nav-item">Contract Liquidated</a></li>
+                    </ul>
+                </div>
+            
+            <div class="col-md-10 container body-content" style="margin-left:16.5%">
+                @RenderBody()
+                <hr />
+                <footer style="float:right">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

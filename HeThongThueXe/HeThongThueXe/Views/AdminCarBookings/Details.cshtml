@@ -1,0 +1,86 @@
+﻿@model HeThongThueXe.Models.SoDatXe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .table_header {
+        text-align: left;
+        font-weight: bolder;
+        padding-right: 10px;
+    }
+
+    table.info {
+        margin-left: 10px;
+    }
+
+    .delete {
+        background-color: orangered
+    }
+
+    .donVi {
+        font-size: small;
+    }
+</style>
+<h2>Details</h2>
+<hr />
+<div class="container">
+    <table>
+        <tr>
+            <td>
+                <div class="col">
+                    <img src="@Url.Content(Model.Xe.HinhAnh)" style="width:500px; height:400px" />
+                </div>
+            </td>
+            <td>
+                <table class="info">
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.User.HoTen)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.User.HoTen)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.User.SDT)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.User.SDT)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.Xe.DongXe.Ten)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Xe.DongXe.Ten)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.Xe.BienSo)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Xe.BienSo)
+                        </td>
+                    </tr>
+                        <tr>
+                            <td colspan="2" style=" color:aliceblue ;text-align:center">
+                                <a href="@Url.Action( "Delete", new { id = Model.ID })" class="btn btn-default" style="background-color:orangered"> Delete </a> |
+                                @Html.ActionLink("Back to List", "Index")
+                            </td>
+                        </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+

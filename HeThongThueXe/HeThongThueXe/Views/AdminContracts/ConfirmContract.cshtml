@@ -1,0 +1,142 @@
+﻿@model HeThongThueXe.Models.HopDongThueXe
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .trip-form tr.row {
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-bottom: 0;
+        padding-left: 10px;
+        display: table-row;
+    }
+
+    .trip-form {
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -500px;
+        height: 50%;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        display: table;
+        font-size: 20px;
+    }
+
+    td {
+        margin-left: 10px;
+        margin-top: 10px;
+        display: table-cell;
+    }
+
+    .btn {
+        color: ghostwhite;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    a.btn {
+        color: dodgerblue;
+        font-size: small;
+    }
+
+    input.btn {
+        margin-right: 20px;
+        background-color: deepskyblue;
+        border-radius: 10px;
+        width: max-content;
+    }
+
+    .error {
+        color: orangered;
+    }
+
+    .btn_container {
+        margin-top: 10px;
+        margin-left: 30%;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 10px;
+        display: table-row;
+        text-align: center;
+    }
+</style>
+
+<div class="ftco-blocks-cover-1">
+    <div class="ftco-cover-1 overlay innerpage" style="background-image: url(../Content/images/hero_2.jpg)">
+        <div class="container" style="margin-bottom:10px">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 text-center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("ContractCreate", "AdminContracts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="trip-form">
+        <table>
+            <tr class="row">
+                <td colspan="3"><h1 style="text-align:center">Contract</h1></td>
+            </tr>
+            <tr>
+                <td class="col">
+                    <table>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.User.HoTen):</td>
+                            <td class="col_2">@Session["NameUser"]</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.Xe.BienSo):</td>
+                            <td class="col_2">@Session["BienSo"]</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.CMND):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.CMND)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.TGGiaoXe):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.TGGiaoXe)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.TGTraXe):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.TGTraXe)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.SoNgayThue):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.SoNgayThue)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.DiaDiemGiaoXe):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.DiaDiemGiaoXe)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.TienDuKien):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.TienDuKien)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.ThanhToanTruoc):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.ThanhToanTruoc)</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.DisplayNameFor(model => model.ConLai):</td>
+                            <td class="col_2">@Html.DisplayFor(model => model.ConLai)</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+        <div class="btn_container">
+            <input type="submit" value="Ok" class="btn" style="background-color:deepskyblue" />
+            <a href="@Url.Action("Index", "Car")" class="btn btn-default" style="background-color:orangered">Cancel</a>
+        </div>
+    </div>
+}
+

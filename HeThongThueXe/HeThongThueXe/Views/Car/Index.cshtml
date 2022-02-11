@@ -1,0 +1,201 @@
+﻿@using HeThongThueXe.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<CarViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    div.page_container {
+        display: block;
+        text-align: center;
+        vertical-align: middle;
+        color: red;
+    }
+
+        div.page_container div.MenuPage li {
+            text-align: center;
+            margin: 5px;
+            vertical-align: middle;
+            color: black;
+            font-size: unset;
+        }
+
+    div.action {
+        text-align: center;
+        vertical-align: middle;
+        float: right;
+        
+    }
+    .errorText{
+        color:orangered;
+    }
+</style>
+@*xe*@
+<div class="ftco-blocks-cover-1">
+    <div class="ftco-cover-1 overlay innerpage" style="background-image: url(../Content/images/hero_2.jpg)">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h1>Our For Rent Cars</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="site-section pt-0 pb-0 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <form class="trip-form">
+                            @using (Html.BeginForm())
+                            {
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label for="cf-1">Brand</label>
+                                        @Html.DropDownList("hang", (IEnumerable<SelectListItem>)ViewBag.ListBrand, "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="cf-1">Seat</label>
+                                        @Html.DropDownList("cho", (IEnumerable<SelectListItem>)ViewBag.ListSeat, "", new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="cf-1">Car name</label>
+                                        @Html.TextBox("dong", "", new { @placeholder = "Input car name", @class = "form-control" })
+                                        @*<input type="search" placeholder="Input car name" class="form-control"/>*@
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <input type="submit" value="Search" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            }
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @if (Model.Count == 0)
+        {
+            <p style="color:orangered;text-align:center">No search results</p>
+        }
+        else
+        {
+    <div class="row">
+        @foreach (var c in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="item-1">
+                    <a href="@Url.Action("CarDetails", "Car", new { id = c.ID })"><img src="@Url.Content(c.Image)" alt="Image" class="img-fluid" style="width:330px;height:180px"></a>
+                    <div class="item-1-contents">
+                        <div class="text-center">
+                            <h3><a href="@Url.Action("CarDetails", "Car", new { id = c.ID })">@Html.DisplayFor(model => c.DongXe)</a></h3>
+                            <div class="rent-price"><span>$@Html.DisplayFor(model => c.Gia)</span>/day</div>
+                        </div>
+                        <ul class="specs">
+
+                            <li>
+                                <span>@Html.LabelFor(model => c.BienSo)</span>
+                                <span class="spec">@Html.DisplayFor(model => c.BienSo)</span>
+                            </li>
+                            <li>
+                                <span>@Html.LabelFor(model => c.HangXe)</span>
+                                <span class="spec">@Html.DisplayFor(model => c.HangXe)</span>
+                            </li>
+                            <li>
+                                <span>@Html.LabelFor(model => c.SoCho)</span>
+                                <span class="spec">@Html.DisplayFor(model => c.SoCho)</span>
+                            </li>
+                            <li>
+                                <span>@Html.LabelFor(model => c.Tinhtrang)</span>
+                                <span class="spec">@Html.DisplayFor(model => c.Tinhtrang)</span>
+                            </li>
+                        </ul>
+                        <div class="d-flex action">
+                            @if (Session["NameUser"] == null)
+                            {
+                                <a href="@Url.Action("Login", "Login")" class="btn btn-primary">
+                                    @if (c.Tinhtrang == "Stock")
+                                    {
+                                        <p>Rent now</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Book</p>
+                                    }
+                                </a>
+                            }
+                            else
+                            {
+                                if (c.Tinhtrang == "Stock")
+                                {
+                                    <a href="@Url.Action("Create", "AdminContracts",new { idXe=c.ID})" class="btn btn-primary">Rent Now</a>
+                                }
+                                else
+                                {
+                                    if (c.Xe.SoDatXes.Where(sDX=>sDX.IDKH==int.Parse(Session["IDUser"].ToString())).FirstOrDefault()==null)
+                                    {
+                                        @Html.ActionLink("BookCar","BookCar", "Car", new { IDXe = c.ID },new { @class= "btn btn-primary" })
+                                    }
+                                    else
+                                    {
+                                        <p class="btn btn-default" style="background-color:orangered">Booked</p>
+                           }
+                           }
+                           }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    }
+
+            </div>
+        
+    <div class="page_container">
+        <div class="MenuPage btn">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+        </div>
+    </div>
+    <p style="text-align:left">Page @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount</p>
+</div>
+<div class="container site-section mb-5">
+    <div class="row justify-content-center text-center">
+        <div class="col-7 text-center mb-5">
+            <h2>How it works</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius earum voluptates sed!</p>
+        </div>
+    </div>
+    <div class="how-it-works d-flex">
+        <div class="step">
+            <span class="number"><span>01</span></span>
+            <span class="caption">Car</span>
+        </div>
+        <div class="step">
+            <span class="number"><span>02</span></span>
+            <span class="caption">Details</span>
+        </div>
+        <div class="step">
+            <span class="number"><span>03</span></span>
+            <span class="caption">Contract</span>
+        </div>
+        <div class="step">
+            <span class="number"><span>04</span></span>
+            <span class="caption">Checkout</span>
+        </div>
+        <div class="step">
+            <span class="number"><span>05</span></span>
+            <span class="caption">Done</span>
+        </div>
+    </div>
+</div>
+
+
+

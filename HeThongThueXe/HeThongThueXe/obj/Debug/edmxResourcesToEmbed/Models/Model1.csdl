@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLHeThongThueXeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DongXe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SoCho" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Xes" Relationship="Self.FK_Xe_DongXe" FromRole="DongXe" ToRole="Xe" />
+  </EntityType>
+  <EntityType Name="HangXe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Xes" Relationship="Self.FK_Xe_HangXe" FromRole="HangXe" ToRole="Xe" />
+  </EntityType>
+  <EntityType Name="HopDongThueXe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDKH" Type="Int32" Nullable="false" />
+    <Property Name="IDXe" Type="Int32" Nullable="false" />
+    <Property Name="CMND" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SoNgayThue" Type="Int32" Nullable="false" />
+    <Property Name="TGGiaoXe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TGTraXe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DiaDiemGiaoXe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ThanhToanTruoc" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ConLai" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TienDuKien" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IDTrangThaiHD" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TrangThaiHopDong" Relationship="Self.FK_HopDongThueXe_TrangThaiHopDong" FromRole="HopDongThueXe" ToRole="TrangThaiHopDong" />
+    <NavigationProperty Name="User" Relationship="Self.FK_HopDongThueXe_User" FromRole="HopDongThueXe" ToRole="User" />
+    <NavigationProperty Name="Xe" Relationship="Self.FK_HopDongThueXe_Xe" FromRole="HopDongThueXe" ToRole="Xe" />
+    <NavigationProperty Name="SoXes" Relationship="Self.FK_SoXe_HopDongThueXe" FromRole="HopDongThueXe" ToRole="SoXe" />
+  </EntityType>
+  <EntityType Name="LoaiUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_User_LoaiUser" FromRole="LoaiUser" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SoDatXe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDKH" Type="Int32" Nullable="false" />
+    <Property Name="IDXe" Type="Int32" Nullable="false" />
+    <Property Name="NgayDat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SoDatXe_User" FromRole="SoDatXe" ToRole="User" />
+    <NavigationProperty Name="Xe" Relationship="Self.FK_SoDatXe_Xe" FromRole="SoDatXe" ToRole="Xe" />
+  </EntityType>
+  <EntityType Name="SoXe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDHD" Type="Int32" Nullable="false" />
+    <Property Name="TGTraXeTT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SoTienTraThem" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SoTienCanTra" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="HopDongThueXe" Relationship="Self.FK_SoXe_HopDongThueXe" FromRole="SoXe" ToRole="HopDongThueXe" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TrangThaiHopDong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="HopDongThueXes" Relationship="Self.FK_HopDongThueXe_TrangThaiHopDong" FromRole="TrangThaiHopDong" ToRole="HopDongThueXe" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgaySinh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="PasswordUser" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IDLoaiUser" Type="Int32" Nullable="false" />
+    <Property Name="SoXeDangThue" Type="Int32" Nullable="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="HopDongThueXes" Relationship="Self.FK_HopDongThueXe_User" FromRole="User" ToRole="HopDongThueXe" />
+    <NavigationProperty Name="LoaiUser" Relationship="Self.FK_User_LoaiUser" FromRole="User" ToRole="LoaiUser" />
+    <NavigationProperty Name="SoDatXes" Relationship="Self.FK_SoDatXe_User" FromRole="User" ToRole="SoDatXe" />
+  </EntityType>
+  <EntityType Name="Xe">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TinhTrang" Type="Boolean" Nullable="false" />
+    <Property Name="BienSo" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="IDDongXe" Type="Int32" Nullable="false" />
+    <Property Name="IDHangXe" Type="Int32" Nullable="false" />
+    <Property Name="NamSX" Type="Int32" Nullable="false" />
+    <Property Name="TyLeGia" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="GhiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DongXe" Relationship="Self.FK_Xe_DongXe" FromRole="Xe" ToRole="DongXe" />
+    <NavigationProperty Name="HangXe" Relationship="Self.FK_Xe_HangXe" FromRole="Xe" ToRole="HangXe" />
+    <NavigationProperty Name="HopDongThueXes" Relationship="Self.FK_HopDongThueXe_Xe" FromRole="Xe" ToRole="HopDongThueXe" />
+    <NavigationProperty Name="SoDatXes" Relationship="Self.FK_SoDatXe_Xe" FromRole="Xe" ToRole="SoDatXe" />
+  </EntityType>
+  <EntityType Name="ThamSo">
+    <Key>
+      <PropertyRef Name="TyLeTraThemKhiQuaNgay" />
+      <PropertyRef Name="TyLeTraThemKhiTonHaiXe" />
+    </Key>
+    <Property Name="TyLeTraThemKhiQuaNgay" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TyLeTraThemKhiTonHaiXe" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Xe_DongXe">
+    <End Role="DongXe" Type="Self.DongXe" Multiplicity="1" />
+    <End Role="Xe" Type="Self.Xe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DongXe">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Xe">
+        <PropertyRef Name="IDDongXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Xe_HangXe">
+    <End Role="HangXe" Type="Self.HangXe" Multiplicity="1" />
+    <End Role="Xe" Type="Self.Xe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HangXe">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Xe">
+        <PropertyRef Name="IDHangXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HopDongThueXe_TrangThaiHopDong">
+    <End Role="TrangThaiHopDong" Type="Self.TrangThaiHopDong" Multiplicity="1" />
+    <End Role="HopDongThueXe" Type="Self.HopDongThueXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrangThaiHopDong">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HopDongThueXe">
+        <PropertyRef Name="IDTrangThaiHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HopDongThueXe_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="HopDongThueXe" Type="Self.HopDongThueXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="HopDongThueXe">
+        <PropertyRef Name="IDKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HopDongThueXe_Xe">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+    <End Role="HopDongThueXe" Type="Self.HopDongThueXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HopDongThueXe">
+        <PropertyRef Name="IDXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoXe_HopDongThueXe">
+    <End Role="HopDongThueXe" Type="Self.HopDongThueXe" Multiplicity="1" />
+    <End Role="SoXe" Type="Self.SoXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HopDongThueXe">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SoXe">
+        <PropertyRef Name="IDHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_LoaiUser">
+    <End Role="LoaiUser" Type="Self.LoaiUser" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IDLoaiUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoDatXe_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="SoDatXe" Type="Self.SoDatXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="SoDatXe">
+        <PropertyRef Name="IDKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoDatXe_Xe">
+    <End Role="Xe" Type="Self.Xe" Multiplicity="1" />
+    <End Role="SoDatXe" Type="Self.SoDatXe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Xe">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SoDatXe">
+        <PropertyRef Name="IDXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLHeThongThueXeEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DongXes" EntityType="Self.DongXe" />
+    <EntitySet Name="HangXes" EntityType="Self.HangXe" />
+    <EntitySet Name="HopDongThueXes" EntityType="Self.HopDongThueXe" />
+    <EntitySet Name="LoaiUsers" EntityType="Self.LoaiUser" />
+    <EntitySet Name="SoDatXes" EntityType="Self.SoDatXe" />
+    <EntitySet Name="SoXes" EntityType="Self.SoXe" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TrangThaiHopDongs" EntityType="Self.TrangThaiHopDong" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Xes" EntityType="Self.Xe" />
+    <EntitySet Name="ThamSoes" EntityType="Self.ThamSo" />
+    <AssociationSet Name="FK_Xe_DongXe" Association="Self.FK_Xe_DongXe">
+      <End Role="DongXe" EntitySet="DongXes" />
+      <End Role="Xe" EntitySet="Xes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Xe_HangXe" Association="Self.FK_Xe_HangXe">
+      <End Role="HangXe" EntitySet="HangXes" />
+      <End Role="Xe" EntitySet="Xes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HopDongThueXe_TrangThaiHopDong" Association="Self.FK_HopDongThueXe_TrangThaiHopDong">
+      <End Role="TrangThaiHopDong" EntitySet="TrangThaiHopDongs" />
+      <End Role="HopDongThueXe" EntitySet="HopDongThueXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HopDongThueXe_User" Association="Self.FK_HopDongThueXe_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="HopDongThueXe" EntitySet="HopDongThueXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HopDongThueXe_Xe" Association="Self.FK_HopDongThueXe_Xe">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="HopDongThueXe" EntitySet="HopDongThueXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoXe_HopDongThueXe" Association="Self.FK_SoXe_HopDongThueXe">
+      <End Role="HopDongThueXe" EntitySet="HopDongThueXes" />
+      <End Role="SoXe" EntitySet="SoXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_LoaiUser" Association="Self.FK_User_LoaiUser">
+      <End Role="LoaiUser" EntitySet="LoaiUsers" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoDatXe_User" Association="Self.FK_SoDatXe_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SoDatXe" EntitySet="SoDatXes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoDatXe_Xe" Association="Self.FK_SoDatXe_Xe">
+      <End Role="Xe" EntitySet="Xes" />
+      <End Role="SoDatXe" EntitySet="SoDatXes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

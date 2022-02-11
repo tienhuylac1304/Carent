@@ -1,0 +1,136 @@
+﻿@model HeThongThueXe.Models.User
+
+
+<style>
+    .trip-form tr.row {
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-bottom: 0;
+        padding-left: 10px;
+        display: table-row;
+    }
+
+    .trip-form {
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -500px;
+        height: 50%;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        display: table;
+        font-size: 20px;
+    }
+
+    td {
+        margin-left: 10px;
+        margin-top: 10px;
+        display: table-cell;
+    }
+
+    .btn {
+        color: ghostwhite;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    a.btn {
+        color: dodgerblue;
+        font-size: small;
+    }
+
+    input.btn {
+        margin-right: 20px;
+        background-color: deepskyblue;
+        border-radius: 10px;
+        width: max-content;
+    }
+
+    .error {
+        color: orangered;
+    }
+
+    .btn_container {
+        margin-top: 10px;
+        margin-left: 30%;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 10px;
+        display: table-row;
+        text-align: center;
+    }
+</style>
+@using (Html.BeginForm("Edit", "AccountInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="ftco-blocks-cover-1">
+        <div class="ftco-cover-1 overlay innerpage" style="background-image: url(../Content/images/hero_2.jpg)">
+            <div class="container" style="margin-bottom:10px">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="trip-form">
+        <table>
+            <tr class="row">
+                <td colspan="3"><h1 style="text-align:center">Change Infomation</h1></td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.HoTen)</td>
+                <td>@Html.TextBoxFor(model => model.HoTen, new { @placeholder = "Input your full name" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.HoTen)</td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.NgaySinh)</td>
+                <td>@Html.TextBoxFor(model => model.NgaySinh, new { @type = "date", @placeholder = "Input your date of birth" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.NgaySinh)</td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.SDT)</td>
+                <td>@Html.TextBoxFor(model => model.SDT, new { @placeholder = "Input your phone number" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.SDT)</td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.DiaChi)</td>
+                <td>@Html.TextBoxFor(model => model.DiaChi, new { @placeholder = "Input your address" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.DiaChi)</td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.Account)</td>
+                <td>@Html.TextBoxFor(model => model.Account, new { @placeholder = "Input your username" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.Account)</td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.PasswordUser)</td>
+                <td>@Html.TextBoxFor(model => model.PasswordUser, new { @type = "password", @placeholder = "Input your password" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.PasswordUser)</td>
+            </tr>
+            <tr class="row">
+                <td>@Html.LabelFor(model => model.ConfirmPass)</td>
+                <td>@Html.TextBoxFor(model => model.ConfirmPass, new { @type = "password", @placeholder = "Input your confirm pass" })</td>
+                <td class="error">@Html.ValidationMessageFor(model => model.ConfirmPass)</td>
+            </tr>
+            @Html.HiddenFor(model=>model.LoaiUser)
+            @Html.HiddenFor(model=>model.SoXeDangThue)
+            @Html.HiddenFor(model=>model.IDUser)
+            <tr class="row">
+                <td class="error">
+                    @if (ViewBag.EditError != null)
+                    {
+                        <p>@ViewBag.EditError</p>
+                    }
+                </td>
+            </tr>
+        </table>
+        <div class="btn_container">
+            <input type="submit" value="Save" name="save" class="btn" />
+            <a href="@Url.Action( "Index","AccountInfo")" class="btn" style="display:inline-table">Cancle</a>
+        </div>
+
+    </div>
+
+}

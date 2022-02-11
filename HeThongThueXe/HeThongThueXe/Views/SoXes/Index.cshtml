@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HeThongThueXe.Models.SoXeViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    tr th {
+        text-align: center;
+        vertical-align: middle;
+    }
+    tr td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .delete{
+        color:orangered;
+    }
+    .details{
+        color:cornflowerblue;
+    }
+    .donVi{
+        font-size:small;
+    }
+</style>
+<h2>Contract Liquidated</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Xe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoNgayThue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DaHoanThanh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            <img src="@Url.Content(item.Xe)" style="width:100px;height:100px" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoNgayThue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaHoanThanh)<span class="donVi">days ago</span>
+        </td>
+        <td class="btn_container">
+            @Html.ActionLink("Details", "Details", new { id = item.ID },new { @class="details"}) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class="delete"})
+        </td>
+    </tr>
+}
+
+</table>

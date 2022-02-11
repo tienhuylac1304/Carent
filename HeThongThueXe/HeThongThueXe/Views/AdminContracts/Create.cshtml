@@ -1,0 +1,147 @@
+﻿@model HeThongThueXe.Models.HopDongThueXe
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .trip-form tr.row {
+        margin-top: 10px;
+        margin-left: 30px;
+        margin-right: 30px;
+        margin-bottom: 0;
+        padding-left: 10px;
+        display: table-row;
+    }
+
+    .trip-form {
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -570px;
+        height: 50%;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        border-radius: 10px;
+        display: table;
+        font-size: 20px;
+    }
+
+    td {
+        margin-left: 10px;
+        margin-top: 10px;
+        display: table-cell;
+    }
+
+    .btn {
+        color: ghostwhite;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    a.btn {
+        color: dodgerblue;
+        font-size: small;
+    }
+
+    input.btn {
+        margin-right: 20px;
+        background-color: deepskyblue;
+        border-radius: 10px;
+        width: max-content;
+    }
+
+    .error {
+        color: orangered;
+    }
+
+    .btn_container {
+        margin-top: 10px;
+        margin-left: 30%;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 10px;
+        display: table-row;
+        text-align: center;
+    }
+</style>
+    <div class="ftco-blocks-cover-1">
+        <div class="ftco-cover-1 overlay innerpage" style="background-image: url(../Content/images/hero_2.jpg)">
+            <div class="container" style="margin-bottom:10px">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6 text-center">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="trip-form">
+        <table>
+            <tr class="row">
+                <td colspan="3"><h1 style="text-align:center">Infomation For Contract</h1></td>
+            </tr>
+            <tr>
+                <td>
+                    <img src="@Session["HinhAnh"].ToString()" style="width:400px;height:400px" />
+                </td>
+                <td>
+                    <table>
+                        <tr class="row">
+                            <td>@Html.LabelFor(model => model.User.HoTen):</td>
+                            <td class="col_2">@Html.Label("idKh", Session["NameUser"].ToString(), new { @class = "form-control" })</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.LabelFor(model => model.CMND):</td>
+                            <td class="col_2">@Html.TextBox("CMND", "", new { @class = "form-control" })</td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.LabelFor(model => model.TGGiaoXe):</td>
+                            <td class="col_2">@Html.TextBox("TGGiao", "", new { @type = "date", @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.TGGiaoXe, "", new { @class = "text-danger" })</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.LabelFor(model => model.TGTraXe):</td>
+                            <td class="col_2">@Html.TextBox("TGTra", "", new { @type = "date", @class = "form-control" })</td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.TGTraXe, "", new { @class = "text-danger" })</td>
+                        </tr>
+                        <tr class="row">
+                            <td>@Html.LabelFor(model => model.DiaDiemGiaoXe):</td>
+                            <td class="col_2">@Html.DropDownList("DDGiao", (IEnumerable<SelectListItem>)ViewBag.DDGiao, "", new { @class = "form-control" })</td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(model => model.DiaDiemGiaoXe, "", new { @class = "text-danger" })</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                    <input type="submit" class="btn btn-default" value="Ok" style="background-color:deepskyblue" />
+                                    <a href="@Url.Action("Index", "Car")" class="btn btn-default" style="background-color:orangered">Cancel</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+        </table>
+        
+    </div>
+
+}

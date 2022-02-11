@@ -1,0 +1,44 @@
+﻿@model HeThongThueXe.Models.SoDatXe
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Car booking ticket</h2>
+
+@using (Html.BeginForm("BookCar","Car")) 
+{
+    
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.User.HoTen)
+        <div class="col-md-10">
+            <p>@Session["NameUser"].ToString()</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <img src="@Url.Content(Model.Xe.HinhAnh)" style="width:100px;height:100px" />
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Xe.DongXe.Ten)
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Xe.DongXe.Ten, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Reserve" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to Car Details", "CarDetails","Car",new { id=Model.IDXe})
+</div>

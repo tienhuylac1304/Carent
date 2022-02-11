@@ -1,0 +1,151 @@
+﻿@model HeThongThueXe.Models.HopDongThueXe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+/*    .col2{
+        text-align:right
+    }*/
+.table_header{
+    text-align:left;
+    font-weight:bolder;
+    padding-right:10px;
+}
+table.info{
+    margin-left:10px;
+}
+</style>
+<h2>Details</h2>
+<hr />
+@using (Html.BeginForm("ChangeState", "AdminContracts", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+<div class="container">
+    <table>
+        <tr>
+            <td>
+                <div class="col">
+                    <img src="@Url.Content(Model.Xe.HinhAnh)" style="width:500px; height:400px" />
+                </div>
+            </td>
+            <td>
+                <table class="info">
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.User.HoTen)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.User.HoTen)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.CMND)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.CMND)
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.TGGiaoXe)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.TGGiaoXe)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.TGTraXe)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.TGTraXe)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.SoNgayThue)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.SoNgayThue)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.DiaDiemGiaoXe)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.DiaDiemGiaoXe)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.TienDuKien)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.TienDuKien)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.ThanhToanTruoc)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.ThanhToanTruoc)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.ConLai)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.ConLai)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_header">
+                            @Html.DisplayNameFor(model => model.TrangThaiHopDong.Ten)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.TrangThaiHopDong.Ten)
+                        </td>
+                    </tr>
+
+                    @Html.HiddenFor(model => model.ID)
+                    <tr>
+                        <td colspan="2" style=" color:aliceblue ;text-align:center">
+                            @if (Model.IDTrangThaiHD == 3)
+                            {
+                                <p class="btn btn-default" style="background-color:green">Done</p>
+                            }
+                            else if (Model.IDTrangThaiHD == 2)
+                            {
+                                <input type="submit" class="btn" style="background-color:darkgoldenrod" value="Liquidation">
+                            }
+                            else
+                            {
+                                <input type="submit" class="btn" style="background-color:darkred" value="Sign">
+                            }
+                            @Html.ActionLink("| Back to List |", "Index")
+                        </td>
+                        </tr>
+                    </table>
+            </td>
+        </tr> 
+        </table>
+        </div>
+    }
+

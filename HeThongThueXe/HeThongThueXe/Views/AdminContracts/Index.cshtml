@@ -1,0 +1,120 @@
+﻿@model IEnumerable<HeThongThueXe.Models.HopDongThueXe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .table {
+        text-align:center;
+        vertical-align:middle
+    }
+    th {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .btn_container{
+        border:solid;
+        vertical-align:middle;
+    }
+</style>
+<h2>Contract</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Xe.HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TGGiaoXe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TGTraXe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaDiemGiaoXe)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.IDTrangThaiHD == 3)
+        {
+            <tr style="background-color:green;color:aliceblue">
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.HoTen)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Xe.HinhAnh)" style="width:100px;height:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TGGiaoXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TGTraXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaDiemGiaoXe)
+                </td>
+                <td class="btn_container">
+                    @Html.ActionLink("| Details |", "Details", new { id = item.ID }, new { @style = "color: aliceblue" })
+                </td>
+            </tr>
+        }
+        else if (item.IDTrangThaiHD == 2)
+        {
+            <tr style="background-color:darkgoldenrod;color:aliceblue">
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.HoTen)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Xe.HinhAnh)" style="width:100px;height:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TGGiaoXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TGTraXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaDiemGiaoXe)
+                </td>
+                <td class="btn_container">
+                    @Html.ActionLink("| Details |", "Details", new { id = item.ID }, new { @style = "color: aliceblue" })
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr style="background-color:darkred;color:aliceblue" >
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.HoTen)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Xe.HinhAnh)" style="width:100px;height:100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TGGiaoXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TGTraXe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaDiemGiaoXe)
+                </td>
+                <td class="btn_container">
+                   @Html.ActionLink("| Details |", "Details", new { id = item.ID },new { @style= "color: aliceblue" })
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
+

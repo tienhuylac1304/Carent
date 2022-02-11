@@ -1,0 +1,83 @@
+﻿@model HeThongThueXe.Models.Xe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Xe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BienSo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BienSo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NamSX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamSX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TyLeGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TyLeGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GhiChu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DongXe.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DongXe.Ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HangXe.Ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HangXe.Ten)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

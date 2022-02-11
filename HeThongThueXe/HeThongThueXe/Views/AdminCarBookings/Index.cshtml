@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HeThongThueXe.Models.SoDatXe>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Car booking</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Xe.HinhAnh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Xe.DongXe.Ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Xe.BienSo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.NgayDat)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        <img src="@Url.Content(item.Xe.HinhAnh)" style="width:100px;height:100px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Xe.DongXe.Ten)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Xe.BienSo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.User.HoTen)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem=>item.NgayDat)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |*@
+        @*@Html.ActionLink("Details", "Details", new { id = item.ID }) |*@
+        <a href="@Url.Action( "Details", new { id = item.ID })"> Details</a>
+    </td>
+</tr>
+}
+
+</table>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HeThongThueXe.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Users</h2>
+
+<p style="float:right">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiUser.Ten)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.HoTen)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgaySinh)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiaChi)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SDT)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LoaiUser.Ten)
+    </td>
+    <td>
+        @if (item.LoaiUser.Id == 0)
+        {
+            @Html.ActionLink("Details", "Details", new { id = item.IDUser }) ;
+        }
+        else
+        {
+            @*<a href="@Url.Action("Edit", new { id = item.IDUser })" style="color:lightgreen">Edit |</a>*@
+            <a href = "@Url.Action( "Details", new { id = item.IDUser })"> Detailes |</a>
+            <a href = "@Url.Action( "Delete", new { id = item.IDUser })" style = "color:orangered"> Delete </a>
+    }
+    </td>
+</tr>
+}
+
+</table>

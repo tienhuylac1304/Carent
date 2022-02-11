@@ -1,0 +1,106 @@
+﻿@model IEnumerable<HeThongThueXe.Models.SoDatXe>
+
+@{
+    ViewBag.Title = "CarBooking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .trip-form {
+        border-radius: 10px;
+        text-align: center;
+        font-size: 25px;
+        margin-top: -400px;
+        display: block;
+    }
+
+    .btn {
+        color: ghostwhite;
+        text-align: center;
+        margin-bottom: 10px;
+        background-color: lightcoral;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+
+    table {
+        display: block;
+        width: max-content;
+    }
+
+    tr {
+        margin-top: 10px;
+    }
+
+    td {
+        margin-left: 10px;
+    }
+</style>
+<div class="ftco-blocks-cover-1">
+    <div class="ftco-cover-1 overlay innerpage" style="background-image: url(../Content/images/hero_2.jpg)">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 text-center">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <table class="trip-form">
+        <tr>
+            <td>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Ord
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Xe.HinhAnh)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Xe.DongXe.Ten)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Xe.BienSo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NgayDat)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @{ int i = 0;}
+                    @foreach (var item in Model)
+                    {
+                        i++;
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.Xe.HinhAnh)" style="width:100px;height:100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Xe.DongXe.Ten)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Xe.BienSo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDat)
+                    </td>
+                        <td>
+                            @Html.ActionLink("Delete", "CarBookingDelete", new { id=item.ID}, new { @class = "btn" })
+                        </td>
+                </tr>
+                    }
+                </table>
+            </td>
+            <tr>
+                <td>
+                    @Html.ActionLink("Back", "Index", new { @class = "btn" })
+                </td>
+        </tr>
+    </table>
+</div>

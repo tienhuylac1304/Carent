@@ -1,0 +1,127 @@
+﻿@model HeThongThueXe.Models.SoXeViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+.table_header{
+    text-align:left;
+    font-weight:bolder;
+    padding-right:10px;
+}
+table.info{
+    margin-left:10px;
+}
+.delete{
+    color:orangered
+}
+.donVi{
+    font-size:small;
+}
+</style>
+<h2>Details</h2>
+<hr />
+    <div class="container">
+        <table>
+            <tr>
+                <td>
+                    <div class="col">
+                        <img src="@Url.Content(Model.Xe)" style="width:500px; height:400px" />
+                    </div>
+                </td>
+                <td>
+                    <table class="info">
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.HoTen)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.HoTen)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.HopDongThueXe.CMND)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.HopDongThueXe.CMND)
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.HopDongThueXe.TGGiaoXe)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.HopDongThueXe.TGGiaoXe)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.HopDongThueXe.TGTraXe)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.HopDongThueXe.TGTraXe)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.SoNgayThue)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.SoNgayThue)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.HopDongThueXe.DiaDiemGiaoXe)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.HopDongThueXe.DiaDiemGiaoXe)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.SoNgayTraTre)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.SoNgayTraTre)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.TongTien)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.TongTien)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_header">
+                                @Html.DisplayNameFor(model => model.DaHoanThanh)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(model => model.DaHoanThanh)<span class="donVi">days ago</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style=" color:aliceblue ;text-align:center">
+                                @Html.ActionLink("Delete", "Delete", new {id= Model.ID }, new {@class="delete"})
+                                @Html.ActionLink("| Back to List |", "Index")
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>

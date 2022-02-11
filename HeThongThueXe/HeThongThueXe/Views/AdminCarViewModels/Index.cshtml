@@ -1,0 +1,92 @@
+﻿@model IEnumerable<HeThongThueXe.Models.CarViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    table.table {
+        vertical-align: middle;
+        text-align: center
+    }
+    th {
+        vertical-align: middle;
+        text-align: center
+    }
+</style>
+
+<h2>Cars</h2>
+
+<p style="float:right">
+    <a href="@Url.Action("Create", "AdminCarViewModels")">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DongXe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BienSo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NSX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HangXe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoCho)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GhiChu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tinhtrang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        <img src="@Url.Content(item.Image)" style="width:100px;height:100px" />
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.DongXe)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.BienSo)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.NSX)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.HangXe)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.SoCho)
+    </td>
+    <td>
+        $@Html.DisplayFor(model => item.Gia)/day
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.GhiChu)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.Tinhtrang)
+    </td>
+    <td>
+        <a href="@Url.Action("Edit","AdminCarViewModels",new{id=item.ID})" style="color:lightgreen">Edit</a>
+        <a href="@Url.Action("Delete","AdminCarViewModels",new{id=item.ID})" style="color: orangered">Delete</a>
+        <a href="@Url.Action("Duplicate","AdminCarViewModels",new{id=item.ID})" style="color: yellow">Duplicate</a>
+    </td>
+</tr>
+}
+
+</table>

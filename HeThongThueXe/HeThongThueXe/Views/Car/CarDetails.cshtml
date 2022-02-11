@@ -1,0 +1,77 @@
+﻿@model HeThongThueXe.Models.CarViewModel
+
+@{
+    ViewBag.Title = "CarDetails";
+}
+<div class="site-section section-3"style="background-image:url(~/Content/images/hero_1.jpg)">
+</div>
+<div class="container">
+    <div class="row align-items-center">
+        <img src="@Url.Content(Model.Image)" style="width:50%;height:auto;margin-left:20px" />
+        <div class="col-lg-5">
+            <div class="feature-car-rent-box-1">
+                <h3 style="background-color:cornflowerblue; text-align:center">@Html.DisplayFor(model => model.DongXe)</h3>
+                <ul class="list-unstyled">
+                    <li>
+                        <span class="carDetail_sub">@Html.LabelFor(model => model.BienSo)</span>
+                        <span class="spec">@Html.DisplayFor(model => model.BienSo)</span>
+                    </li>
+                    <li>
+                        <span class="carDetail_sub">@Html.LabelFor(model => model.HangXe)</span>
+                        <span class="spec">@Html.DisplayFor(model => model.HangXe)</span>
+                    </li>
+                    <li>
+                        <span class="carDetail_sub">@Html.LabelFor(model => model.NSX)</span>
+                        <span class="spec">@Html.DisplayFor(model => model.NSX)</span>
+                    </li>
+                    <li>
+                        <span class="carDetail_sub">@Html.LabelFor(model => model.SoCho)</span>
+                        <span class="spec">@Html.DisplayFor(model => model.SoCho)</span>
+                    </li>
+                    <li>
+                        <span class="carDetail_sub">@Html.LabelFor(model => model.Tinhtrang)</span>
+                        <span class="spec">@Html.DisplayFor(model => model.Tinhtrang)</span>
+                    </li>
+                    <li>
+                        <span class="carDetail_sub">@Html.LabelFor(model => model.GhiChu)</span>
+                        <span class="spec">@Html.DisplayFor(model => model.GhiChu)</span>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center bg-light p-3" style="text-align:right;float:right">
+                    <span>$@Html.DisplayFor(model => model.Gia)/day</span>
+                    @if (Session["NameUser"] == null)
+                    {
+                        <a href="@Url.Action("Login", "Login")" class="btn btn-primary">
+                            @if (Model.Tinhtrang == "Stock")
+                            {
+                                <p>Rent now</p>
+                            }
+                            else
+                            {
+                                <p>Book</p>
+                            }
+                        </a>
+                    }
+                    else
+                    {
+                        if (Model.Tinhtrang == "Stock")
+                        {
+                            <a href="@Url.Action("Create", "AdminContracts",new { idXe=Model.ID})" class="btn btn-primary">Rent Now</a>
+                        }
+                        else
+                        {
+                            if (Model.Xe.SoDatXes.Where(sDX => sDX.IDKH == int.Parse(Session["IDUser"].ToString())).FirstOrDefault() == null)
+                            {
+                                @Html.ActionLink("BookCar", "BookCar", "Car", new { IDXe = Model.ID }, new { @class = "btn btn-primary" })
+                            }
+                            else
+                            {
+                                <p class="btn btn-default" style="background-color:orangered">Booked</p>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
